@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<!--
+		Schulte tables generator
+		author: Piotr Michałowski, Olsztyn, woj. W-M, Poland
+		piotrm35@hotmail.com
+		license: GPL v. 2.0
+		work start date: 17.12.2018
+		-->
+		<title>STGen_0.3</title>
+		<style>
+			html, body
+			{
+				height: 100%;
+				margin: 0;
+				text-align: center;
+				font-size: 40px;
+			}
+			#btn
+			{
+				text-align: center;
+				font-size: 40px;
+				padding: 20px 150px;
+			}
+			table
+			{
+				width: 100%;
+				height: 75%;
+			}
+			td
+			{
+				border: 2px solid black;
+			}
+		</style>
+	</head>
+
+	<body onload="init()">
+		<div id="info">0</div>
+		<button id="btn" onclick="clearInterval(my_timer)">Stop</button>
+		<br><br>
+		<script type="text/javascript">
+			var my_timer = setInterval(my_timer_function, 1000);
+			var t = 0;
+
+			function my_timer_function()
+			{
+				t++;
+				document.getElementById("info").innerHTML = t.toString();
+			}
+			
+			function init()
+			{
+				var body = document.getElementsByTagName("body")[0];
+				var tbl = document.createElement("table");
+				var tbl_body = document.createElement("tbody");
+				var row, cell, cell_text;
+				var x, y, d, i;
+				var d_array = [];
+
+				for (y = 0; y < 5; y++)
+				{
+					row = document.createElement("tr");
+					for (x = 0; x < 5; x++)
+					{
+						cell = document.createElement("td");
+						d = Math.floor((Math.random() * 25) + 1);
+						while (d_array.indexOf(d) >= 0)
+						{
+							d = Math.floor((Math.random() * 25) + 1);
+						}
+						d_array[d_array.length] = d;
+						cell_text = document.createTextNode(d.toString());
+						cell.appendChild(cell_text);
+						row.appendChild(cell);
+					}
+					tbl_body.appendChild(row);
+				}
+				tbl.appendChild(tbl_body);
+				body.appendChild(tbl);
+			}
+		</script>
+	</body>
+  
+</html>
